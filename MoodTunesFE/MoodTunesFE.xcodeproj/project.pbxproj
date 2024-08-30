@@ -1,0 +1,582 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		056FC80E2C82851E007F134F /* MoodTunesFEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC80D2C82851E007F134F /* MoodTunesFEApp.swift */; };
+		056FC8102C82851E007F134F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC80F2C82851E007F134F /* ContentView.swift */; };
+		056FC8122C82851F007F134F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056FC8112C82851F007F134F /* Assets.xcassets */; };
+		056FC8152C82851F007F134F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056FC8142C82851F007F134F /* Preview Assets.xcassets */; };
+		056FC81F2C82851F007F134F /* MoodTunesFETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC81E2C82851F007F134F /* MoodTunesFETests.swift */; };
+		056FC8292C82851F007F134F /* MoodTunesFEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC8282C82851F007F134F /* MoodTunesFEUITests.swift */; };
+		056FC82B2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC82A2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		056FC81B2C82851F007F134F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 056FC8022C82851E007F134F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 056FC8092C82851E007F134F;
+			remoteInfo = MoodTunesFE;
+		};
+		056FC8252C82851F007F134F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 056FC8022C82851E007F134F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 056FC8092C82851E007F134F;
+			remoteInfo = MoodTunesFE;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		056FC80A2C82851E007F134F /* MoodTunesFE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodTunesFE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		056FC80D2C82851E007F134F /* MoodTunesFEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTunesFEApp.swift; sourceTree = "<group>"; };
+		056FC80F2C82851E007F134F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		056FC8112C82851F007F134F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		056FC8142C82851F007F134F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		056FC81A2C82851F007F134F /* MoodTunesFETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoodTunesFETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		056FC81E2C82851F007F134F /* MoodTunesFETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTunesFETests.swift; sourceTree = "<group>"; };
+		056FC8242C82851F007F134F /* MoodTunesFEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoodTunesFEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		056FC8282C82851F007F134F /* MoodTunesFEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTunesFEUITests.swift; sourceTree = "<group>"; };
+		056FC82A2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTunesFEUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		056FC8072C82851E007F134F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056FC8172C82851F007F134F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056FC8212C82851F007F134F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		056FC8012C82851E007F134F = {
+			isa = PBXGroup;
+			children = (
+				056FC80C2C82851E007F134F /* MoodTunesFE */,
+				056FC81D2C82851F007F134F /* MoodTunesFETests */,
+				056FC8272C82851F007F134F /* MoodTunesFEUITests */,
+				056FC80B2C82851E007F134F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		056FC80B2C82851E007F134F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				056FC80A2C82851E007F134F /* MoodTunesFE.app */,
+				056FC81A2C82851F007F134F /* MoodTunesFETests.xctest */,
+				056FC8242C82851F007F134F /* MoodTunesFEUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		056FC80C2C82851E007F134F /* MoodTunesFE */ = {
+			isa = PBXGroup;
+			children = (
+				056FC80D2C82851E007F134F /* MoodTunesFEApp.swift */,
+				056FC80F2C82851E007F134F /* ContentView.swift */,
+				056FC8112C82851F007F134F /* Assets.xcassets */,
+				056FC8132C82851F007F134F /* Preview Content */,
+			);
+			path = MoodTunesFE;
+			sourceTree = "<group>";
+		};
+		056FC8132C82851F007F134F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				056FC8142C82851F007F134F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		056FC81D2C82851F007F134F /* MoodTunesFETests */ = {
+			isa = PBXGroup;
+			children = (
+				056FC81E2C82851F007F134F /* MoodTunesFETests.swift */,
+			);
+			path = MoodTunesFETests;
+			sourceTree = "<group>";
+		};
+		056FC8272C82851F007F134F /* MoodTunesFEUITests */ = {
+			isa = PBXGroup;
+			children = (
+				056FC8282C82851F007F134F /* MoodTunesFEUITests.swift */,
+				056FC82A2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift */,
+			);
+			path = MoodTunesFEUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		056FC8092C82851E007F134F /* MoodTunesFE */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 056FC82E2C82851F007F134F /* Build configuration list for PBXNativeTarget "MoodTunesFE" */;
+			buildPhases = (
+				056FC8062C82851E007F134F /* Sources */,
+				056FC8072C82851E007F134F /* Frameworks */,
+				056FC8082C82851E007F134F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoodTunesFE;
+			productName = MoodTunesFE;
+			productReference = 056FC80A2C82851E007F134F /* MoodTunesFE.app */;
+			productType = "com.apple.product-type.application";
+		};
+		056FC8192C82851F007F134F /* MoodTunesFETests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 056FC8312C82851F007F134F /* Build configuration list for PBXNativeTarget "MoodTunesFETests" */;
+			buildPhases = (
+				056FC8162C82851F007F134F /* Sources */,
+				056FC8172C82851F007F134F /* Frameworks */,
+				056FC8182C82851F007F134F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				056FC81C2C82851F007F134F /* PBXTargetDependency */,
+			);
+			name = MoodTunesFETests;
+			productName = MoodTunesFETests;
+			productReference = 056FC81A2C82851F007F134F /* MoodTunesFETests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		056FC8232C82851F007F134F /* MoodTunesFEUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 056FC8342C82851F007F134F /* Build configuration list for PBXNativeTarget "MoodTunesFEUITests" */;
+			buildPhases = (
+				056FC8202C82851F007F134F /* Sources */,
+				056FC8212C82851F007F134F /* Frameworks */,
+				056FC8222C82851F007F134F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				056FC8262C82851F007F134F /* PBXTargetDependency */,
+			);
+			name = MoodTunesFEUITests;
+			productName = MoodTunesFEUITests;
+			productReference = 056FC8242C82851F007F134F /* MoodTunesFEUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		056FC8022C82851E007F134F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					056FC8092C82851E007F134F = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					056FC8192C82851F007F134F = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 056FC8092C82851E007F134F;
+					};
+					056FC8232C82851F007F134F = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 056FC8092C82851E007F134F;
+					};
+				};
+			};
+			buildConfigurationList = 056FC8052C82851E007F134F /* Build configuration list for PBXProject "MoodTunesFE" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 056FC8012C82851E007F134F;
+			productRefGroup = 056FC80B2C82851E007F134F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				056FC8092C82851E007F134F /* MoodTunesFE */,
+				056FC8192C82851F007F134F /* MoodTunesFETests */,
+				056FC8232C82851F007F134F /* MoodTunesFEUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		056FC8082C82851E007F134F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				056FC8152C82851F007F134F /* Preview Assets.xcassets in Resources */,
+				056FC8122C82851F007F134F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056FC8182C82851F007F134F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056FC8222C82851F007F134F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		056FC8062C82851E007F134F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				056FC8102C82851E007F134F /* ContentView.swift in Sources */,
+				056FC80E2C82851E007F134F /* MoodTunesFEApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056FC8162C82851F007F134F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				056FC81F2C82851F007F134F /* MoodTunesFETests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056FC8202C82851F007F134F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				056FC82B2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift in Sources */,
+				056FC8292C82851F007F134F /* MoodTunesFEUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		056FC81C2C82851F007F134F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 056FC8092C82851E007F134F /* MoodTunesFE */;
+			targetProxy = 056FC81B2C82851F007F134F /* PBXContainerItemProxy */;
+		};
+		056FC8262C82851F007F134F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 056FC8092C82851E007F134F /* MoodTunesFE */;
+			targetProxy = 056FC8252C82851F007F134F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		056FC82C2C82851F007F134F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		056FC82D2C82851F007F134F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		056FC82F2C82851F007F134F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MoodTunesFE/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = abhi.MoodTunesFE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		056FC8302C82851F007F134F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MoodTunesFE/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = abhi.MoodTunesFE;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		056FC8322C82851F007F134F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = abhi.MoodTunesFETests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoodTunesFE.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoodTunesFE";
+			};
+			name = Debug;
+		};
+		056FC8332C82851F007F134F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = abhi.MoodTunesFETests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoodTunesFE.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoodTunesFE";
+			};
+			name = Release;
+		};
+		056FC8352C82851F007F134F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = abhi.MoodTunesFEUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MoodTunesFE;
+			};
+			name = Debug;
+		};
+		056FC8362C82851F007F134F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = abhi.MoodTunesFEUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MoodTunesFE;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		056FC8052C82851E007F134F /* Build configuration list for PBXProject "MoodTunesFE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				056FC82C2C82851F007F134F /* Debug */,
+				056FC82D2C82851F007F134F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		056FC82E2C82851F007F134F /* Build configuration list for PBXNativeTarget "MoodTunesFE" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				056FC82F2C82851F007F134F /* Debug */,
+				056FC8302C82851F007F134F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		056FC8312C82851F007F134F /* Build configuration list for PBXNativeTarget "MoodTunesFETests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				056FC8322C82851F007F134F /* Debug */,
+				056FC8332C82851F007F134F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		056FC8342C82851F007F134F /* Build configuration list for PBXNativeTarget "MoodTunesFEUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				056FC8352C82851F007F134F /* Debug */,
+				056FC8362C82851F007F134F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 056FC8022C82851E007F134F /* Project object */;
+}
