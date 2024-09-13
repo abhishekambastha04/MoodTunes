@@ -1,9 +1,11 @@
 import os
 import boto3
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 app = Flask(__name__)
+CORS(app)
 
 cognito_client = boto3.client('cognito-idp', region_name='us-east-1')
 load_dotenv()

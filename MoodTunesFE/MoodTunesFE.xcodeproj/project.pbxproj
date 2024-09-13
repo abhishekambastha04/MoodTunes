@@ -14,6 +14,7 @@
 		056FC81F2C82851F007F134F /* MoodTunesFETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC81E2C82851F007F134F /* MoodTunesFETests.swift */; };
 		056FC8292C82851F007F134F /* MoodTunesFEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC8282C82851F007F134F /* MoodTunesFEUITests.swift */; };
 		056FC82B2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC82A2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift */; };
+		05871F2B2C93B20200DF1C52 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05871F2A2C93B20200DF1C52 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		056FC8242C82851F007F134F /* MoodTunesFEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoodTunesFEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		056FC8282C82851F007F134F /* MoodTunesFEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTunesFEUITests.swift; sourceTree = "<group>"; };
 		056FC82A2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTunesFEUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		05871F2A2C93B20200DF1C52 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		056FC80C2C82851E007F134F /* MoodTunesFE */ = {
 			isa = PBXGroup;
 			children = (
+				05871F292C93B19800DF1C52 /* Views */,
 				056FC80D2C82851E007F134F /* MoodTunesFEApp.swift */,
 				056FC80F2C82851E007F134F /* ContentView.swift */,
 				056FC8112C82851F007F134F /* Assets.xcassets */,
@@ -125,6 +128,14 @@
 				056FC82A2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift */,
 			);
 			path = MoodTunesFEUITests;
+			sourceTree = "<group>";
+		};
+		05871F292C93B19800DF1C52 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				05871F2A2C93B20200DF1C52 /* LoginView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05871F2B2C93B20200DF1C52 /* LoginView.swift in Sources */,
 				056FC8102C82851E007F134F /* ContentView.swift in Sources */,
 				056FC80E2C82851E007F134F /* MoodTunesFEApp.swift in Sources */,
 			);
