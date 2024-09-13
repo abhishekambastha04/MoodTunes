@@ -6,59 +6,76 @@
 //
 
 import SwiftUI
- 
+
 struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var loginMessage: String = ""
-
+    @State private var showSignUpView = false  // Track if SignUpView is shown
+    
     var body: some View {
-        VStack {
-            
-            Spacer()
-            // Use the imported logo image
-            Image("MoodTunes")
-                .resizable()
-                .scaledToFit() // Maintain aspect ratio
-                .frame(width: 300, height: 250)
-                .cornerRadius(40) // Round the corners
-                .shadow(color: .gray, radius: 10, x: 0, y: 5) // Add shadow
-                .padding() // Add padding around the image
-            
-            Spacer()
-            
-            TextField("Email", text: $email)
-                .padding()
-                .background(Color.white)
-                .cornerRadius(5.0)
-            
-            SecureField("Password", text: $password)
-                .padding()
-                .background(Color.white)
-                .cornerRadius(5.0)
-            
-            Button(action: {
-                login()
-            }) {
-                Text("Login")
-                    .foregroundColor(.white)
+        NavigationView {
+            VStack {
+                Image("MoodTunes")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 300, height: 250)
+                    .cornerRadius(40)
+                    .shadow(color: .gray, radius: 10, x: 0, y: 5)
                     .padding()
-                    .frame(width: 200, height: 50)
-                    .background(Color.green)
-                    .cornerRadius(10.0)
+                
+                Spacer()
+                
+                TextField("Email", text: $email)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(5.0)
+                
+                SecureField("Password", text: $password)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(5.0)
+                
+                Button(action: {
+                    login()
+                }) {
+                    Text("Login")
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 200, height: 50)
+                        .background(Color(red: 0.5, green: 0.7, blue: 0.5))
+                        .cornerRadius(10.0)
+                }
+                .padding(.top, 20)
+                
+                Text(loginMessage)
+                    .padding()
+                    .foregroundColor(loginMessage == "Login successful" ? .green : .red)
+                
+                Spacer()
+                
+                // Sign Up option
+                HStack {
+                    Text("Don't have an account?")
+                    NavigationLink(destination: SignUpView()) {
+                        Text("Sign Up Now")
+                            .foregroundColor(.blue)
+                    }
+                }
+                .padding(.bottom, 40)
             }
-            .padding(.top, 20)
-            
-            Text(loginMessage)
-                .padding()
-                .foregroundColor(loginMessage == "Login successful" ? .green : .red)
+            .padding()
+            .background(
+                Image("lightgreen")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            )
         }
-        .padding()
-        .background(Color.green.opacity(0.2)) // dark green background
     }
     
     func login() {
-        guard let url = URL(string: "http://localhost:5001/login") else { return } // Point to your Flask backend
+        guard let url = URL(string: "http://localhost:5001/login") else { return }
         
         let loginData = ["email": email, "password": password]
         
@@ -76,17 +93,16 @@ struct LoginView: View {
             }
             
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                // Handle successful login
                 if let result = try? JSONDecoder().decode([String: String].self, from: data) {
                     DispatchQueue.main.async {
                         loginMessage = "Login successful"
+                        // Navigate to the next view upon successful login
                     }
                 }
             } else {
-                // Handle login failure
                 if let result = try? JSONDecoder().decode([String: String].self, from: data) {
                     DispatchQueue.main.async {
-                        loginMessage = result["error"] ?? "Login failed"
+                        loginMessage = "Invalid email and/or password"
                     }
                 }
             }
