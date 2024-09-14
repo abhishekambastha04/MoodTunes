@@ -38,7 +38,7 @@ def login():
             "tokens": response['AuthenticationResult']
         }), 200
     except Exception as e:
-        return jsonify({"error": str(e)}), 400
+        return jsonify({"message": "Login not successful", "error": str(e)}), 400
 
 
 @app.route('/signup', methods=['POST'])
