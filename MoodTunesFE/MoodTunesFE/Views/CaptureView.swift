@@ -6,97 +6,172 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct CaptureView: View {
-  @State private var showImagePicker = false
-  @State private var pickerType: ImagePicker.PickerType?
-  @State private var selectedImage: UIImage?
-  @State private var isUploadButtonSelected = false
-  @State private var isSelfieButtonSelected = false
+    @State private var showImagePicker = false
+    @State private var pickerType: ImagePicker.PickerType?
+    @State private var selectedImage: UIImage?
+    @State private var isUploadButtonSelected = false
+    @State private var isSelfieButtonSelected = false
+    @State private var isUploading = false
+    @State private var uploadResult: String?
 
-  var body: some View {
-    ZStack {
-      Image("lightgreen")
-        .resizable()
-        .scaledToFill()
-        .ignoresSafeArea()
+    var body: some View {
+        ZStack {
+            Image("lightgreen")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
 
-      VStack {
-        if let image = selectedImage {
-          Image(uiImage: image)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 300, height: 300)
-            .overlay(RoundedRectangle(cornerRadius: 10)
-                      .stroke(Color("Black"), lineWidth: 4))
-            .padding(10)
-        } else {
-          Text("No photo selected")
+            VStack {
+                if let image = selectedImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300, height: 300)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.blue, lineWidth: 6)
+                        )
+                        .shadow(radius: 10) 
+                        .padding(10)
+                } else {
+                    Text("No photo selected")
+                        .padding()
+                }
+
+                HStack {
+                    Button(action: {
+                        pickerType = .photoLibrary
+                        showImagePicker = true
+                        isUploadButtonSelected.toggle()
+                    }) {
+                        Text("Upload Photo")
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 125, height: 100)
+                            .background(Color.darkGreen)
+                            .cornerRadius(10)
+                            .shadow(radius: isUploadButtonSelected ? 5 : 0)
+                            .scaleEffect(isUploadButtonSelected ? 1.1 : 1)
+                            .offset(y: isUploadButtonSelected ? -5 : 0)
+                    }
+
+                    Button(action: {
+                        pickerType = .camera
+                        isSelfieButtonSelected.toggle()
+                        showImagePicker = true
+                    }) {
+                        Text("Take Selfie")
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 125, height: 100)
+                            .background(Color.darkGreen)
+                            .cornerRadius(10)
+                            .shadow(radius: isSelfieButtonSelected ? 5 : 0)
+                            .scaleEffect(isSelfieButtonSelected ? 1.1 : 1)
+                            .offset(y: isSelfieButtonSelected ? -5 : 0)
+                    }
+                    .padding()
+                }
+
+                Button(action: {
+                    if let selectedImage = selectedImage {
+                        isUploading = true
+                        uploadImage(selectedImage)
+                    }
+                }) {
+                    Text("Next")
+                        .padding()
+                        .background(selectedImage == nil ? Color.gray : Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .disabled(selectedImage == nil) // Disable the button if no image is selected
+                .padding()
+
+                if isUploading {
+                    ProgressView("Uploading...")
+                        .padding()
+                }
+
+                if let result = uploadResult {
+                    Text("Upload result: \(result)")
+                        .padding()
+                }
+            }
             .padding()
         }
+        .sheet(isPresented: $showImagePicker) {
+            if let pickerType = pickerType {
+                ImagePicker(pickerType: pickerType, selectedImage: $selectedImage)
+            }
+        }
+    }
 
-        HStack {
-          Button(action: {
-            pickerType = .photoLibrary
-            showImagePicker = true
-            isUploadButtonSelected.toggle()
-          }) {
-           Text("Upload Photo")
-              .foregroundColor(.white)
-              .padding()
-              .frame(width: 125, height: 100)
-              .background(Color.darkGreen)
-              .cornerRadius(10)
-              .shadow(radius: isUploadButtonSelected ? 5 : 0)
-              .scaleEffect(isUploadButtonSelected ? 1.1 : 1)
-              .offset(y: isUploadButtonSelected ? -5 : 0)
-          }
-
-          Button(action: {
-            pickerType = .camera
-            isSelfieButtonSelected.toggle()
-            showImagePicker = true
-          }) {
-          Text("Take Selfie")
-              .foregroundColor(.white)
-              .padding()
-              .frame(width: 125, height: 100)
-              .background(Color.darkGreen)
-              .cornerRadius(10)
-              .shadow(radius: isSelfieButtonSelected ? 5 : 0)
-              .scaleEffect(isSelfieButtonSelected ? 1.1 : 1)
-              .offset(y: isSelfieButtonSelected ? -5 : 0)
-          }
-          .padding()
+    private func uploadImage(_ image: UIImage) {
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            print("Failed to convert image to Data")
+            return
         }
 
-        Button(action: {
-          proceedToNextStep()
-        }) {
-          Text("Next")
-            .padding()
-            .background(selectedImage == nil ? Color.gray : Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(8)
-        }
-        .disabled(selectedImage == nil) // Disable the button if no image is selected
-      }
-      .padding() // Adjust padding if needed
-    }
-    .sheet(isPresented: $showImagePicker) {
-      if let pickerType = pickerType {
-        ImagePicker(pickerType: pickerType, selectedImage: $selectedImage)
-      }
-    }
-  }
+        let url = URL(string: "http://192.168.0.145:5001/upload")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
 
-  private func proceedToNextStep() {
-    // Implement the action to proceed to the next step
-    print("Proceeding to the next step with selected image.")
-  }
+        // Create boundary and headers
+        let boundary = UUID().uuidString
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        // Build body data
+        var body = Data()
+
+        // Add the image data to the request body
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"image\"; filename=\"selfie.jpg\"\r\n".data(using: .utf8)!)
+        body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+        body.append(imageData)
+        body.append("\r\n".data(using: .utf8)!)
+
+        // End the body
+        body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+        request.httpBody = body
+
+        // Create URLSession to upload the image
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                isUploading = false
+            }
+
+            if let error = error {
+                print("Error uploading image: \(error)")
+                DispatchQueue.main.async {
+                    uploadResult = "Failed to upload image."
+                }
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("Error with response status code")
+                DispatchQueue.main.async {
+                    uploadResult = "Upload failed. Please try again."
+                }
+                return
+            }
+
+            if let data = data, let jsonString = String(data: data, encoding: .utf8) {
+                print("Response from server: \(jsonString)")
+                DispatchQueue.main.async {
+                    uploadResult = "Upload successful!"
+                }
+            }
+        }
+        task.resume()
+    }
 }
-
 
 extension Color {
     static let darkGreen = Color(red: 0.1, green: 0.5, blue: 0.2)
 }
+

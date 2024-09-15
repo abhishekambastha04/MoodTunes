@@ -1,7 +1,9 @@
 import os
 import boto3
+import uuid
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 
 app = Flask(__name__)
@@ -78,7 +80,26 @@ def confirm_signup():
         return jsonify({"message": "User email confirmed successfully."}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+    
+@app.route('/upload', methods=['POST'])
+def upload_image():
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image found in the request'}), 400
+
+    image = request.files['image']
+    
+    # Generate a unique filename to avoid overwriting
+    unique_filename = f"{uuid.uuid4()}.{image.filename.rsplit('.', 1)[1].lower()}"
+    unique_filename = secure_filename(unique_filename)
+    print(unique_filename)
+    image_path = os.path.join('uploads', unique_filename)
+    image.save(image_path)
+
+    return jsonify({'message': 'Image successfully uploaded', 'file_path': image_path}), 200
+
 
 if __name__ == '__main__':
+    if not os.path.exists('uploads'):
+        os.makedirs('uploads')
     app.run(host="0.0.0.0", port=5001)
     
