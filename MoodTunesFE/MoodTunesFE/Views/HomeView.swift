@@ -10,10 +10,15 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         VStack {
-            Spacer() // Pushes content to the center
+            Spacer() // Pushes animation down from the top
+
+            PianoAnimationView() // Piano Animation
+
+            Spacer(minLength: 20) // Adds a bit of space between the animation and the title
             
             Text("Welcome to MoodTunes")
                 .font(.largeTitle)
+                .fontWeight(.bold)
                 .padding(.bottom, 50) // Adds space below the title
             
             // "View Your Playlist History" Button
