@@ -34,7 +34,7 @@ struct CaptureView: View {
                             RoundedRectangle(cornerRadius: 15)
                                 .stroke(Color.blue, lineWidth: 6)
                         )
-                        .shadow(radius: 10) 
+                        .shadow(radius: 10)
                         .padding(10)
                 } else {
                     Text("No photo selected")

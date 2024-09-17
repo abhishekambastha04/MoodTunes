@@ -1,6 +1,7 @@
 import os
 import boto3
 import uuid
+import csv
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
@@ -8,6 +9,17 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app)
+
+with open('rekognition_access_accessKeys.csv', 'r') as file:
+    next(file)
+    reader = csv.reader(file)
+    for row in reader:
+        access_key_id = row[0]
+        secret_access_key = row[1]
+
+
+rekognition_client = boto3.client('rekognition', region_name='us-west-2',
+                        aws_access_key_id=access_key_id, aws_secret_access_key=secret_access_key)
 
 cognito_client = boto3.client('cognito-idp', region_name='us-east-1')
 load_dotenv()
@@ -94,8 +106,29 @@ def upload_image():
     print(unique_filename)
     image_path = os.path.join('uploads', unique_filename)
     image.save(image_path)
+    emotions = analyze_emotions(image_path)
+    print(emotions)
 
-    return jsonify({'message': 'Image successfully uploaded', 'file_path': image_path}), 200
+    return jsonify({'message': 'Image successfully uploaded', 'file_path': image_path, 'emotions': emotions}), 200
+
+def analyze_emotions(image_path):
+    with open(image_path, 'rb') as image_file:
+        image_bytes = image_file.read()
+
+    # Call AWS Rekognition to detect facial emotions
+    response = rekognition_client.detect_faces(
+        Image={'Bytes': image_bytes},
+        Attributes=['ALL']  
+    )
+    emotions = []
+    for faceDetail in response['FaceDetails']:
+        for emotion in faceDetail['Emotions']:
+            emotions.append({
+                'Type': emotion['Type'],
+                'Confidence': emotion['Confidence']
+            })
+
+    return emotions
 
 
 if __name__ == '__main__':

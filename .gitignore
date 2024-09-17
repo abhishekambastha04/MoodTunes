@@ -1,4 +1,6 @@
 .env
 
+rekognition_access_accessKeys.csv
+
 node_modules/
 *.log
