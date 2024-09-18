@@ -2,7 +2,10 @@ import os
 import boto3
 import uuid
 import csv
-from flask import Flask, request, jsonify
+import base64
+from flask import Flask, redirect, request, jsonify
+import requests
+from requests import post
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
@@ -129,6 +132,54 @@ def analyze_emotions(image_path):
             })
 
     return emotions
+
+
+spotify_client_id = os.getenv('SPOTIFY_CLIENT_ID')
+spotify_client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
+redirect_uri = "http://192.168.0.145:5001/callback"  
+
+
+@app.route('/spotify_login')
+def spotify_login():
+    auth_url = (
+        f"https://accounts.spotify.com/authorize"
+        f"?client_id={spotify_client_id}&response_type=code"
+        f"&redirect_uri={redirect_uri}&scope=user-read-email"
+    )
+    print(auth_url)
+    return redirect(auth_url)
+
+@app.route('/callback')
+def callback():
+    code = request.args.get('code')
+    if not code:
+        return jsonify({"error": "No code received from Spotify"}), 400
+
+    # Exchange authorization code for access token
+    token_url = "https://accounts.spotify.com/api/token"
+    auth_header = base64.b64encode(f"{spotify_client_id}:{spotify_client_secret}".encode()).decode('utf-8')
+    headers = {
+        "Authorization": f"Basic {auth_header}",
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "grant_type": "authorization_code",
+        "code": code,
+        "redirect_uri": redirect_uri
+    }
+
+    # Request access token from Spotify
+    response = requests.post(token_url, headers=headers, data=data)
+    if response.status_code != 200:
+        return jsonify({"error": "Failed to retrieve access token"}), 500
+
+    token_info = response.json()
+    access_token = token_info.get("access_token")
+    print("-----")
+    print(access_token)
+    # Redirect back to the iOS app with the access token
+    return redirect("https://www.youtube.com/watch?v=dhVYKyDF86c")
+    # return jsonify({"message": "Authentication successful"}), 200
 
 
 if __name__ == '__main__':

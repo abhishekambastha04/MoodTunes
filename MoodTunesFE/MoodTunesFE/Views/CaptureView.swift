@@ -16,6 +16,9 @@ struct CaptureView: View {
     @State private var isSelfieButtonSelected = false
     @State private var isUploading = false
     @State private var uploadResult: String?
+    // spotify variables
+    @State private var isLoggedIn = false
+    @State private var accessToken: String = ""
 
     var body: some View {
         ZStack {
@@ -100,6 +103,32 @@ struct CaptureView: View {
                     Text("Upload result: \(result)")
                         .padding()
                 }
+                
+                if uploadResult == "Upload successful!" {
+                    if isLoggedIn {
+                        Text("Logged in with Spotify!")
+                            .font(.largeTitle)
+                            .padding()
+
+                        Text("Access Token:")
+                        Text(accessToken)
+                        .foregroundColor(.green)
+                        .padding()
+                    }
+                    else {
+                        Button(action: {
+                            openSpotifyLogin()  // Redirect to Spotify OAuth
+                        }) {
+                            Text("Continue with Spotify")
+                                .padding()
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                        .padding()
+                    }
+                }
+                
             }
             .padding()
         }
@@ -107,6 +136,22 @@ struct CaptureView: View {
             if let pickerType = pickerType {
                 ImagePicker(pickerType: pickerType, selectedImage: $selectedImage)
             }
+        }
+        .onOpenURL { url in
+            if let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+               let queryItems = components.queryItems,
+               let token = queryItems.first(where: { $0.name == "token" })?.value {
+                // Store the access token
+                self.accessToken = token
+                self.isLoggedIn = true
+            }
+        }
+    }
+    
+    
+    func openSpotifyLogin() {
+        if let url = URL(string: "http://192.168.0.145:5001/spotify_login") {
+            UIApplication.shared.open(url)
         }
     }
 

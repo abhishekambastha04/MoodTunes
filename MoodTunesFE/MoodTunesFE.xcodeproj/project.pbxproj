@@ -48,6 +48,7 @@
 		0565AB882C9651F4009A9023 /* MoodTunesFE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoodTunesFE.entitlements; sourceTree = "<group>"; };
 		0565AB8A2C9673A7009A9023 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0565AB8C2C968486009A9023 /* PianoAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoAnimationView.swift; sourceTree = "<group>"; };
+		0565AB8E2C9AA89C009A9023 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		056FC80A2C82851E007F134F /* MoodTunesFE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodTunesFE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		056FC80D2C82851E007F134F /* MoodTunesFEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTunesFEApp.swift; sourceTree = "<group>"; };
 		056FC80F2C82851E007F134F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 		056FC80C2C82851E007F134F /* MoodTunesFE */ = {
 			isa = PBXGroup;
 			children = (
+				0565AB8E2C9AA89C009A9023 /* Info.plist */,
 				0565AB892C96732E009A9023 /* utils */,
 				0565AB882C9651F4009A9023 /* MoodTunesFE.entitlements */,
 				05871F292C93B19800DF1C52 /* Views */,
@@ -466,6 +468,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MoodTunesFE/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoodTunesFE/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -495,6 +498,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MoodTunesFE/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoodTunesFE/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
