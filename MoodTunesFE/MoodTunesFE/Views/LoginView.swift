@@ -11,7 +11,7 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var loginMessage: String = ""
-    @State private var showSignUpView = false  // Track if SignUpView is shown
+    @State private var showHomeView = false
     
     var body: some View {
         NavigationView {
@@ -36,9 +36,7 @@ struct LoginView: View {
                     .background(Color.white)
                     .cornerRadius(5.0)
                 
-                Button(action: {
-                    login()
-                }) {
+                Button(action: login) {
                     Text("Login")
                         .foregroundColor(.white)
                         .padding()
@@ -63,6 +61,10 @@ struct LoginView: View {
                     }
                 }
                 .padding(.bottom, 40)
+                
+                NavigationLink(destination: HomeView(), isActive: $showHomeView) {
+                    EmptyView()
+                }
             }
             .padding()
             .background(
@@ -75,11 +77,17 @@ struct LoginView: View {
     }
     
     func login() {
-        guard let url = URL(string: "http://localhost:5001/login") else { return }
+        guard let url = URL(string: "http://172.16.225.108:5001/login") else {
+            print("Invalid URL")
+            return
+        }
         
         let loginData = ["email": email, "password": password]
         
-        guard let requestBody = try? JSONSerialization.data(withJSONObject: loginData) else { return }
+        guard let requestBody = try? JSONSerialization.data(withJSONObject: loginData) else {
+            print("Failed to serialize request body")
+            return
+        }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -88,22 +96,22 @@ struct LoginView: View {
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                print("Network error:", error?.localizedDescription ?? "")
+                print("Network error:", error?.localizedDescription ?? "Unknown error")
                 return
             }
             
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                if let result = try? JSONDecoder().decode([String: String].self, from: data) {
-                    DispatchQueue.main.async {
-                        loginMessage = "Login successful"
-                        // Navigate to the next view upon successful login
-                    }
+                // Check the response JSON for the message
+                DispatchQueue.main.async {
+                    print("Login successful block reached")
+                    loginMessage = "Login successful"
+                    showHomeView = true
                 }
+                
             } else {
-                if let result = try? JSONDecoder().decode([String: String].self, from: data) {
-                    DispatchQueue.main.async {
-                        loginMessage = "Invalid email and/or password"
-                    }
+                DispatchQueue.main.async {
+                    print("Login failed")
+                    loginMessage = "Login failed. Invalid username and/or password"
                 }
             }
         }.resume()

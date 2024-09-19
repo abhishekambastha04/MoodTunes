@@ -9,7 +9,7 @@ Tech Stack
 * Cloud Services: AWS Rekognition (for facial recognition and emotion analysis), AWS Cognito (user authentication)
 * Music API: Spotify API
 * Storage: (To be decided, e.g., S3)
-* Database: (DynamoDB) for Playlist History
+* Database: (MongoDB) for Playlist History, Redis for Caching requests
 
 Features
 * Capture or upload an image or video to analyze your mood.

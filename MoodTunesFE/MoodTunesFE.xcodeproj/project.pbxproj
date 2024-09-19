@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0565AB812C93E681009A9023 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0565AB802C93E681009A9023 /* SignUpView.swift */; };
+		0565AB832C963CB8009A9023 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0565AB822C963CB8009A9023 /* HomeView.swift */; };
+		0565AB852C963CF9009A9023 /* PlaylistHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0565AB842C963CF9009A9023 /* PlaylistHistoryView.swift */; };
+		0565AB872C963D13009A9023 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0565AB862C963D13009A9023 /* CaptureView.swift */; };
+		0565AB8B2C9673A7009A9023 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0565AB8A2C9673A7009A9023 /* ImagePicker.swift */; };
+		0565AB8D2C968486009A9023 /* PianoAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0565AB8C2C968486009A9023 /* PianoAnimationView.swift */; };
 		056FC80E2C82851E007F134F /* MoodTunesFEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC80D2C82851E007F134F /* MoodTunesFEApp.swift */; };
 		056FC8102C82851E007F134F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC80F2C82851E007F134F /* ContentView.swift */; };
 		056FC8122C82851F007F134F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056FC8112C82851F007F134F /* Assets.xcassets */; };
@@ -37,6 +42,13 @@
 
 /* Begin PBXFileReference section */
 		0565AB802C93E681009A9023 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		0565AB822C963CB8009A9023 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0565AB842C963CF9009A9023 /* PlaylistHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHistoryView.swift; sourceTree = "<group>"; };
+		0565AB862C963D13009A9023 /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
+		0565AB882C9651F4009A9023 /* MoodTunesFE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoodTunesFE.entitlements; sourceTree = "<group>"; };
+		0565AB8A2C9673A7009A9023 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		0565AB8C2C968486009A9023 /* PianoAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoAnimationView.swift; sourceTree = "<group>"; };
+		0565AB8E2C9AA89C009A9023 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		056FC80A2C82851E007F134F /* MoodTunesFE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodTunesFE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		056FC80D2C82851E007F134F /* MoodTunesFEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTunesFEApp.swift; sourceTree = "<group>"; };
 		056FC80F2C82851E007F134F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,6 +87,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0565AB892C96732E009A9023 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				0565AB8A2C9673A7009A9023 /* ImagePicker.swift */,
+				0565AB8C2C968486009A9023 /* PianoAnimationView.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		056FC8012C82851E007F134F = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +119,9 @@
 		056FC80C2C82851E007F134F /* MoodTunesFE */ = {
 			isa = PBXGroup;
 			children = (
+				0565AB8E2C9AA89C009A9023 /* Info.plist */,
+				0565AB892C96732E009A9023 /* utils */,
+				0565AB882C9651F4009A9023 /* MoodTunesFE.entitlements */,
 				05871F292C93B19800DF1C52 /* Views */,
 				056FC80D2C82851E007F134F /* MoodTunesFEApp.swift */,
 				056FC80F2C82851E007F134F /* ContentView.swift */,
@@ -137,6 +161,9 @@
 			children = (
 				05871F2A2C93B20200DF1C52 /* LoginView.swift */,
 				0565AB802C93E681009A9023 /* SignUpView.swift */,
+				0565AB822C963CB8009A9023 /* HomeView.swift */,
+				0565AB842C963CF9009A9023 /* PlaylistHistoryView.swift */,
+				0565AB862C963D13009A9023 /* CaptureView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -272,8 +299,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0565AB812C93E681009A9023 /* SignUpView.swift in Sources */,
+				0565AB852C963CF9009A9023 /* PlaylistHistoryView.swift in Sources */,
+				0565AB872C963D13009A9023 /* CaptureView.swift in Sources */,
+				0565AB8D2C968486009A9023 /* PianoAnimationView.swift in Sources */,
 				05871F2B2C93B20200DF1C52 /* LoginView.swift in Sources */,
 				056FC8102C82851E007F134F /* ContentView.swift in Sources */,
+				0565AB8B2C9673A7009A9023 /* ImagePicker.swift in Sources */,
+				0565AB832C963CB8009A9023 /* HomeView.swift in Sources */,
 				056FC80E2C82851E007F134F /* MoodTunesFEApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,11 +462,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MoodTunesFE/MoodTunesFE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MoodTunesFE/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoodTunesFE/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -458,11 +492,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MoodTunesFE/MoodTunesFE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MoodTunesFE/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoodTunesFE/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
