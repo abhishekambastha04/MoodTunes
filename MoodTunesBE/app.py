@@ -136,18 +136,19 @@ def analyze_emotions(image_path):
 
 spotify_client_id = os.getenv('SPOTIFY_CLIENT_ID')
 spotify_client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
-redirect_uri = "http://192.168.0.145:5001/callback"  
-
+redirect_uri_1 = "http://172.16.225.108:5001/callback"  
 
 @app.route('/spotify_login')
 def spotify_login():
     auth_url = (
         f"https://accounts.spotify.com/authorize"
         f"?client_id={spotify_client_id}&response_type=code"
-        f"&redirect_uri={redirect_uri}&scope=user-read-email"
+        f"&redirect_uri={redirect_uri_1}&scope=user-read-email"
     )
     print(auth_url)
     return redirect(auth_url)
+
+redirect_uri_2 = redirect_uri_1
 
 @app.route('/callback')
 def callback():
@@ -165,7 +166,7 @@ def callback():
     data = {
         "grant_type": "authorization_code",
         "code": code,
-        "redirect_uri": redirect_uri
+        "redirect_uri": redirect_uri_2
     }
 
     # Request access token from Spotify
@@ -178,8 +179,7 @@ def callback():
     print("-----")
     print(access_token)
     # Redirect back to the iOS app with the access token
-    return redirect("https://www.youtube.com/watch?v=dhVYKyDF86c")
-    # return jsonify({"message": "Authentication successful"}), 200
+    return redirect(f"moodtunesfe://callback?token={access_token}")
 
 
 if __name__ == '__main__':

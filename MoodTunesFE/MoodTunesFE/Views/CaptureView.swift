@@ -137,20 +137,26 @@ struct CaptureView: View {
                 ImagePicker(pickerType: pickerType, selectedImage: $selectedImage)
             }
         }
-        .onOpenURL { url in
-            if let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
-               let queryItems = components.queryItems,
-               let token = queryItems.first(where: { $0.name == "token" })?.value {
-                // Store the access token
-                self.accessToken = token
-                self.isLoggedIn = true
-            }
+        .onOpenURL {  url in
+            handleSpotifyRedirect(url)
         }
     }
     
     
+    func handleSpotifyRedirect(_ url: URL) {
+        if let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+           let queryItems = components.queryItems,
+           let token = queryItems.first(where: { $0.name == "token" })?.value {
+            // Store the access token
+            self.accessToken = token
+            self.isLoggedIn = true
+        } else {
+            print("Failed to get access token from the redirect URL.")
+        }
+    }
+    
     func openSpotifyLogin() {
-        if let url = URL(string: "http://192.168.0.145:5001/spotify_login") {
+        if let url = URL(string: "http://172.16.225.108:5001/spotify_login") {
             UIApplication.shared.open(url)
         }
     }
@@ -161,7 +167,7 @@ struct CaptureView: View {
             return
         }
 
-        let url = URL(string: "http://192.168.0.145:5001/upload")!
+        let url = URL(string: "http://172.16.225.108:5001/upload")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 

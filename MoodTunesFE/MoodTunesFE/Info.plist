@@ -8,13 +8,12 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>moodtunesfe://callback</string>
+			<string>moodtunesfe</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>moodtunesfe://callback</string>
+				<string>moodtunesfe</string>
 			</array>
 		</dict>
-		<dict/>
 	</array>
 </dict>
 </plist>
