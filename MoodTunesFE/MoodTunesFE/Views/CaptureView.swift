@@ -19,6 +19,7 @@ struct CaptureView: View {
     // spotify variables
     @State private var isLoggedIn = false
     @State private var accessToken: String = ""
+    @State private var navigateToNextView = false
 
     var body: some View {
         ZStack {
@@ -106,14 +107,17 @@ struct CaptureView: View {
                 
                 if uploadResult == "Upload successful!" {
                     if isLoggedIn {
-                        Text("Logged in with Spotify!")
+                        NavigationLink(destination: ArtistSelectionView(accessToken: accessToken),
+                                                           isActive: $navigateToNextView) {
+                            EmptyView()  // NavigationLink without any button or UI
+                        }
+                        .hidden()  // Hide it from view
+                        Text("Successfully logged in!")
                             .font(.largeTitle)
                             .padding()
-
-                        Text("Access Token:")
-                        Text(accessToken)
-                        .foregroundColor(.green)
-                        .padding()
+                        .onAppear {
+                            navigateToNextView = true
+                        }
                     }
                     else {
                         Button(action: {
@@ -156,7 +160,7 @@ struct CaptureView: View {
     }
     
     func openSpotifyLogin() {
-        if let url = URL(string: "http://172.16.225.108:5001/spotify_login") {
+        if let url = URL(string: "http://192.168.0.145:5001/spotify_login") {
             UIApplication.shared.open(url)
         }
     }
@@ -167,7 +171,7 @@ struct CaptureView: View {
             return
         }
 
-        let url = URL(string: "http://172.16.225.108:5001/upload")!
+        let url = URL(string: "http://192.168.0.145:5001/upload")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
