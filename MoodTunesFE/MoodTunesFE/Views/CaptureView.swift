@@ -160,7 +160,7 @@ struct CaptureView: View {
     }
     
     func openSpotifyLogin() {
-        if let url = URL(string: "http://192.168.0.145:5001/spotify_login") {
+        if let url = URL(string: "http://192.168.0.84:5001/spotify_login") {
             UIApplication.shared.open(url)
         }
     }
@@ -171,7 +171,7 @@ struct CaptureView: View {
             return
         }
 
-        let url = URL(string: "http://192.168.0.145:5001/upload")!
+        let url = URL(string: "http://192.168.0.84:5001/upload")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 

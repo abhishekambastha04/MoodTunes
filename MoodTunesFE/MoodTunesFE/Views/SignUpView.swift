@@ -119,7 +119,7 @@ struct SignUpView: View {
             return
         }
         
-        guard let url = URL(string: "http://192.168.0.145:5001/signup") else { return }
+        guard let url = URL(string: "http://192.168.0.84:5001/signup") else { return }
         
         let signUpData = ["email": email, "password": password]
         
@@ -170,7 +170,7 @@ struct SignUpView: View {
     }
 
     func confirmSignUp() {
-        guard let url = URL(string: "http://192.168.0.145:5001/confirm-signup") else { return }
+        guard let url = URL(string: "http://192.168.0.84:5001/confirm-signup") else { return }
         
         let confirmationData = ["email": email, "confirmation_code": confirmationCode]
         

@@ -136,7 +136,7 @@ def analyze_emotions(image_path):
 
 spotify_client_id = os.getenv('SPOTIFY_CLIENT_ID')
 spotify_client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
-redirect_uri_1 = "http://192.168.0.145:5001/callback"  
+redirect_uri_1 = "http://192.168.0.84:5001/callback"  
 
 @app.route('/spotify_login')
 def spotify_login():
