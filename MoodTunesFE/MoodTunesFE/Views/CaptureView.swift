@@ -16,9 +16,10 @@ struct CaptureView: View {
     @State private var isSelfieButtonSelected = false
     @State private var isUploading = false
     @State private var uploadResult: String?
-    // spotify variables
+    // Spotify variables
     @State private var isLoggedIn = false
     @State private var accessToken: String = ""
+    @State private var detectedEmotion: [[String: Any]] = []
     @State private var navigateToNextView = false
 
     var body: some View {
@@ -107,17 +108,17 @@ struct CaptureView: View {
                 
                 if uploadResult == "Upload successful!" {
                     if isLoggedIn {
-                        NavigationLink(destination: ArtistSelectionView(accessToken: accessToken),
-                                                           isActive: $navigateToNextView) {
+                        NavigationLink(destination: ArtistSelectionView(accessToken: accessToken, detectedEmotion: detectedEmotion),
+                                       isActive: $navigateToNextView) {
                             EmptyView()  // NavigationLink without any button or UI
                         }
                         .hidden()  // Hide it from view
                         Text("Successfully logged in!")
                             .font(.largeTitle)
                             .padding()
-                        .onAppear {
-                            navigateToNextView = true
-                        }
+                            .onAppear {
+                                navigateToNextView = true
+                            }
                     }
                     else {
                         Button(action: {
@@ -145,7 +146,6 @@ struct CaptureView: View {
             handleSpotifyRedirect(url)
         }
     }
-    
     
     func handleSpotifyRedirect(_ url: URL) {
         if let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
@@ -215,10 +215,19 @@ struct CaptureView: View {
                 return
             }
 
-            if let data = data, let jsonString = String(data: data, encoding: .utf8) {
-                print("Response from server: \(jsonString)")
+            if let data = data,
+               let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+               let emotions = jsonResponse["emotions"] as? [[String: Any]] { // Expecting a list of dictionaries
+                print("Response from server: \(jsonResponse)")
+                print(emotions)
+                // Process the list of dictionaries
                 DispatchQueue.main.async {
+                    self.detectedEmotion = emotions
                     uploadResult = "Upload successful!"
+                }
+            } else {
+                DispatchQueue.main.async {
+                    uploadResult = "Failed to parse server response."
                 }
             }
         }

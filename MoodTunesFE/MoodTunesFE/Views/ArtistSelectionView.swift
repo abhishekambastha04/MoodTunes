@@ -9,10 +9,12 @@ import SwiftUI
 
 struct ArtistSelectionView: View {
     let accessToken: String
+    let detectedEmotion: [[String: Any]]
     @State private var searchText: String = ""
     @State private var searchResults: [Artist] = []
     @State private var selectedArtists: [Artist] = []
     
+
     var body: some View {
         VStack {
             // Header text
@@ -68,9 +70,21 @@ struct ArtistSelectionView: View {
                             .cornerRadius(8)
                             .padding(.horizontal)
                     }
+                
+                    if selectedArtists.count >= 5 {
+                        Button(action: {
+                            print("Ready to generate playlist!")
+                        }) {
+                            Text("Generate Playlist")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .padding(.top, 20)
+                        }
+                    }
                 }
             }
-            
             Spacer()
         }
         .navigationBarTitle("Artist Selection", displayMode: .inline)
