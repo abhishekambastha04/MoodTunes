@@ -13,8 +13,10 @@ struct ArtistSelectionView: View {
     @State private var searchText: String = ""
     @State private var searchResults: [Artist] = []
     @State private var selectedArtists: [Artist] = []
+    // playlist stuff
+    @State private var playlist: [Track] = [] // Store the playlist here
+    @State private var isPlaylistReady = false
     
-
     var body: some View {
         VStack {
             // Header text
@@ -55,7 +57,6 @@ struct ArtistSelectionView: View {
                     }
                 }
             }
-
             // Display selected artists
             if !selectedArtists.isEmpty {
                 VStack {
@@ -73,14 +74,20 @@ struct ArtistSelectionView: View {
                 
                     if selectedArtists.count >= 5 {
                         Button(action: {
-                            print("Ready to generate playlist!")
-                        }) {
-                            Text("Generate Playlist")
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                                .padding(.top, 20)
+                        generatePlaylist()
+                    }) {
+                        Text("Generate Playlist")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                            .padding(.top, 20)
+                        }
+                        NavigationLink(
+                            destination: ReviewPlaylistView(playlist: playlist),
+                            isActive: $isPlaylistReady  // Bind the navigation to the state
+                        ) {
+                            EmptyView()
                         }
                     }
                 }
@@ -89,16 +96,66 @@ struct ArtistSelectionView: View {
         }
         .navigationBarTitle("Artist Selection", displayMode: .inline)
     }
+    
+    // send data to backend to generate playlist
+    func generatePlaylist() {
+        guard let url = URL(string: "http://192.168.0.84:5001/generate-playlist") else {
+            print("Invalid URL")
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        // Prepare the body data for the request
+        let artistIds = selectedArtists.map { $0.id }
+        let body: [String: Any] = [
+            "detectedEmotion": detectedEmotion,
+            "selectedArtists": artistIds,
+            "accessToken": accessToken
+        ]
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+        } catch {
+            print("Failed to serialize JSON body: \(error)")
+            return
+        }
+        // Make the API call
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    guard let data = data else {
+                        print("No data received")
+                        return
+                    }
+                    // Decode the playlist from JSON
+                    do {
+                        let playlistResponse = try JSONDecoder().decode(PlaylistResponse.self, from: data)
+                        DispatchQueue.main.async {
+                            self.playlist = playlistResponse.tracks
+                            self.isPlaylistReady = true // Playlist is ready, trigger navigation
+                        }
+                    } catch {
+                        print("Failed to decode playlist: \(error)")
+                    }
+                } else {
+                    print("Error: Server returned status code \(httpResponse.statusCode)")
+                }
+            }
+        }.resume()
+    }
 
     // Fetch artist data from Spotify API based on user input
     func fetchArtists(query: String) {
         guard let url = URL(string: "https://api.spotify.com/v1/search?q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&type=artist") else {
             return
         }
-        
         var request = URLRequest(url: url)
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        
+    
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data, let result = try? JSONDecoder().decode(SpotifySearchResponse.self, from: data) {
                 DispatchQueue.main.async {
@@ -108,7 +165,6 @@ struct ArtistSelectionView: View {
         }.resume()
     }
 }
-
 // Artist model to decode JSON data
 struct Artist: Identifiable, Codable {
     let id: String
@@ -120,4 +176,15 @@ struct SpotifySearchResponse: Codable {
         let items: [Artist]
     }
     let artists: Artists
+}
+
+struct PlaylistResponse: Codable {
+    let tracks: [Track]
+}
+
+// Track model to represent each song in the playlist
+struct Track: Identifiable, Codable {
+    let id: String
+    let name: String
+    let artist: String
 }

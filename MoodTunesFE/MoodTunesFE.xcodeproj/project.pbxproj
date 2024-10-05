@@ -22,6 +22,7 @@
 		056FC8292C82851F007F134F /* MoodTunesFEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC8282C82851F007F134F /* MoodTunesFEUITests.swift */; };
 		056FC82B2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FC82A2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift */; };
 		05871F2B2C93B20200DF1C52 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05871F2A2C93B20200DF1C52 /* LoginView.swift */; };
+		05E84D5A2CB2024000D7577E /* ReviewPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E84D592CB2024000D7577E /* ReviewPlaylistView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		056FC8282C82851F007F134F /* MoodTunesFEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTunesFEUITests.swift; sourceTree = "<group>"; };
 		056FC82A2C82851F007F134F /* MoodTunesFEUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTunesFEUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		05871F2A2C93B20200DF1C52 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		05E84D592CB2024000D7577E /* ReviewPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPlaylistView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				0565AB842C963CF9009A9023 /* PlaylistHistoryView.swift */,
 				0565AB862C963D13009A9023 /* CaptureView.swift */,
 				0565AB8F2C9CBA51009A9023 /* ArtistSelectionView.swift */,
+				05E84D592CB2024000D7577E /* ReviewPlaylistView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				0565AB902C9CBA51009A9023 /* ArtistSelectionView.swift in Sources */,
 				0565AB872C963D13009A9023 /* CaptureView.swift in Sources */,
 				0565AB8D2C968486009A9023 /* PianoAnimationView.swift in Sources */,
+				05E84D5A2CB2024000D7577E /* ReviewPlaylistView.swift in Sources */,
 				05871F2B2C93B20200DF1C52 /* LoginView.swift in Sources */,
 				056FC8102C82851E007F134F /* ContentView.swift in Sources */,
 				0565AB8B2C9673A7009A9023 /* ImagePicker.swift in Sources */,

@@ -181,6 +181,64 @@ def callback():
     # Redirect back to the iOS app with the access token
     return redirect(f"moodtunesfe://callback?token={access_token}")
 
+@app.route('/generate_playlist', methods=['POST'])
+def generate_playlist():
+    data = request.json
+    artists = data['artists']
+    emotions = data['emotions']
+    access_token = data['accessToken'] 
+
+    # Emotion to genre mapping logic
+    top_emotions = sorted(emotions, key=lambda x: -x['Confidence'])[:4] 
+    genres = map_emotions_to_genres([emotion['Type'] for emotion in top_emotions])
+
+    # Query Spotify for top songs of the given artists and genres
+    songs = []
+    for artist_id in artists:
+        for genre in genres:
+            response = query_spotify_for_songs(artist_id, genre, access_token)
+            songs.extend(response.get('tracks', []))
+
+    # Return 12-15 songs
+    selected_songs = songs[:15]
+    return jsonify({
+        'tracks': [
+            {'id': song['id'], 'name': song['name'], 'artist': song['artists'][0]['name']}
+            for song in selected_songs
+        ]
+    })
+
+def query_spotify_for_songs(artist_id, genre, access_token):
+    url = f"https://api.spotify.com/v1/recommendations"
+    
+    # Spotify recommendations endpoint allows filtering based on seed artists, genres, etc.
+    params = {
+        'seed_artists': artist_id,  # Seed the recommendation with the given artist
+        'seed_genres': genre,       # Filter by genre
+        'limit': 10                 # Number of tracks to return (adjustable)
+    }
+    
+    headers = {
+        'Authorization': f'Bearer {access_token}'
+    }
+    response = requests.get(url, headers=headers, params=params)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error querying Spotify API: {response.status_code}, {response.text}")
+        return {}
+
+def map_emotions_to_genres(emotions):
+    emotion_genre_map = {
+        "HAPPY": ["pop", "dance"],
+        "SAD": ["acoustic", "blues"],
+        "ANGRY": ["rock", "metal"],
+        "CALM": ["ambient", "classical"],
+    }
+    genres = []
+    for emotion in emotions:
+        genres.extend(emotion_genre_map.get(emotion.upper(), []))
+    return genres
 
 if __name__ == '__main__':
     if not os.path.exists('uploads'):
