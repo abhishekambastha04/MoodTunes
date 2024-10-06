@@ -16,9 +16,11 @@ struct CaptureView: View {
     @State private var isSelfieButtonSelected = false
     @State private var isUploading = false
     @State private var uploadResult: String?
-    // spotify variables
+    // Spotify variables
     @State private var isLoggedIn = false
     @State private var accessToken: String = ""
+    @State private var detectedEmotion: [[String: Any]] = []
+    @State private var navigateToNextView = false
 
     var body: some View {
         ZStack {
@@ -106,14 +108,17 @@ struct CaptureView: View {
                 
                 if uploadResult == "Upload successful!" {
                     if isLoggedIn {
-                        Text("Logged in with Spotify!")
+                        NavigationLink(destination: ArtistSelectionView(accessToken: accessToken, detectedEmotion: detectedEmotion),
+                                       isActive: $navigateToNextView) {
+                            EmptyView()  // NavigationLink without any button or UI
+                        }
+                        .hidden()  // Hide it from view
+                        Text("Successfully logged in!")
                             .font(.largeTitle)
                             .padding()
-
-                        Text("Access Token:")
-                        Text(accessToken)
-                        .foregroundColor(.green)
-                        .padding()
+                            .onAppear {
+                                navigateToNextView = true
+                            }
                     }
                     else {
                         Button(action: {
@@ -142,7 +147,6 @@ struct CaptureView: View {
         }
     }
     
-    
     func handleSpotifyRedirect(_ url: URL) {
         if let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
            let queryItems = components.queryItems,
@@ -156,7 +160,7 @@ struct CaptureView: View {
     }
     
     func openSpotifyLogin() {
-        if let url = URL(string: "http://172.16.225.108:5001/spotify_login") {
+        if let url = URL(string: "http://192.168.0.84:5001/spotify_login") {
             UIApplication.shared.open(url)
         }
     }
@@ -167,7 +171,7 @@ struct CaptureView: View {
             return
         }
 
-        let url = URL(string: "http://172.16.225.108:5001/upload")!
+        let url = URL(string: "http://192.168.0.84:5001/upload")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
@@ -211,10 +215,19 @@ struct CaptureView: View {
                 return
             }
 
-            if let data = data, let jsonString = String(data: data, encoding: .utf8) {
-                print("Response from server: \(jsonString)")
+            if let data = data,
+               let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+               let emotions = jsonResponse["emotions"] as? [[String: Any]] { // Expecting a list of dictionaries
+                print("Response from server: \(jsonResponse)")
+                print(emotions)
+                // Process the list of dictionaries
                 DispatchQueue.main.async {
+                    self.detectedEmotion = emotions
                     uploadResult = "Upload successful!"
+                }
+            } else {
+                DispatchQueue.main.async {
+                    uploadResult = "Failed to parse server response."
                 }
             }
         }

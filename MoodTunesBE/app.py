@@ -136,7 +136,7 @@ def analyze_emotions(image_path):
 
 spotify_client_id = os.getenv('SPOTIFY_CLIENT_ID')
 spotify_client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
-redirect_uri_1 = "http://172.16.225.108:5001/callback"  
+redirect_uri_1 = "http://192.168.0.84:5001/callback"  
 
 @app.route('/spotify_login')
 def spotify_login():
@@ -181,6 +181,83 @@ def callback():
     # Redirect back to the iOS app with the access token
     return redirect(f"moodtunesfe://callback?token={access_token}")
 
+@app.route('/generate_playlist', methods=['POST'])
+def generate_playlist():
+    data = request.json
+    print(data)
+    
+    artists = data['selectedArtists']
+    emotions = data['detectedEmotion']
+    access_token = data['accessToken']
+
+    # Emotion to genre mapping logic
+    top_emotions = sorted(emotions, key=lambda x: -x['Confidence'])[:4]
+    genres = map_emotions_to_genres([emotion['Type'] for emotion in top_emotions])
+
+    # Dictionary to keep track of how many songs we've collected per artist
+    artist_song_count = {artist: 0 for artist in artists}
+    max_songs_per_artist = 4  
+    total_songs = []
+
+    # Query Spotify for top songs of the given artists and genres
+    for artist_id in artists:
+        for genre in genres:
+            if artist_song_count[artist_id] < max_songs_per_artist:
+                response = query_spotify_for_songs(artist_id, genre, access_token)
+                tracks = response.get('tracks', [])
+                
+                for song in tracks:
+                    if artist_song_count[artist_id] < max_songs_per_artist:
+                        total_songs.append(song)
+                        artist_song_count[artist_id] += 1
+                    if len(total_songs) >= 15:
+                        break  # Stop if we have enough songs overall
+                if len(total_songs) >= 15:
+                    break
+        if len(total_songs) >= 15:
+            break
+        
+    print("Collected Songs:")
+    for song in total_songs[:15]:  # Print only the first 15 songs
+        print(f"ID: {song['id']}, Name: {song['name']}, Artist: {song['artists'][0]['name']}")
+    return jsonify({
+        'tracks': [
+            {'id': song['id'], 'name': song['name'], 'artist': song['artists'][0]['name']}
+            for song in total_songs[:15]
+        ]
+    })
+
+def query_spotify_for_songs(artist_id, genre, access_token):
+    url = f"https://api.spotify.com/v1/recommendations"
+    
+    # Spotify recommendations endpoint allows filtering based on seed artists, genres, etc.
+    params = {
+        'seed_artists': artist_id,  # Seed the recommendation with the given artist
+        'seed_genres': genre,       # Filter by genre
+        'limit': 10                 # Number of tracks to return (adjustable)
+    }
+    
+    headers = {
+        'Authorization': f'Bearer {access_token}'
+    }
+    response = requests.get(url, headers=headers, params=params)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Error querying Spotify API: {response.status_code}, {response.text}")
+        return {}
+
+def map_emotions_to_genres(emotions):
+    emotion_genre_map = {
+        "HAPPY": ["pop", "dance"],
+        "SAD": ["acoustic", "blues"],
+        "ANGRY": ["rock", "metal"],
+        "CALM": ["ambient", "classical"],
+    }
+    genres = []
+    for emotion in emotions:
+        genres.extend(emotion_genre_map.get(emotion.upper(), []))
+    return genres
 
 if __name__ == '__main__':
     if not os.path.exists('uploads'):
