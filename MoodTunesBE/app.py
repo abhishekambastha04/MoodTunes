@@ -184,27 +184,46 @@ def callback():
 @app.route('/generate_playlist', methods=['POST'])
 def generate_playlist():
     data = request.json
-    artists = data['artists']
-    emotions = data['emotions']
-    access_token = data['accessToken'] 
+    print(data)
+    
+    artists = data['selectedArtists']
+    emotions = data['detectedEmotion']
+    access_token = data['accessToken']
 
     # Emotion to genre mapping logic
-    top_emotions = sorted(emotions, key=lambda x: -x['Confidence'])[:4] 
+    top_emotions = sorted(emotions, key=lambda x: -x['Confidence'])[:4]
     genres = map_emotions_to_genres([emotion['Type'] for emotion in top_emotions])
 
+    # Dictionary to keep track of how many songs we've collected per artist
+    artist_song_count = {artist: 0 for artist in artists}
+    max_songs_per_artist = 4  
+    total_songs = []
+
     # Query Spotify for top songs of the given artists and genres
-    songs = []
     for artist_id in artists:
         for genre in genres:
-            response = query_spotify_for_songs(artist_id, genre, access_token)
-            songs.extend(response.get('tracks', []))
-
-    # Return 12-15 songs
-    selected_songs = songs[:15]
+            if artist_song_count[artist_id] < max_songs_per_artist:
+                response = query_spotify_for_songs(artist_id, genre, access_token)
+                tracks = response.get('tracks', [])
+                
+                for song in tracks:
+                    if artist_song_count[artist_id] < max_songs_per_artist:
+                        total_songs.append(song)
+                        artist_song_count[artist_id] += 1
+                    if len(total_songs) >= 15:
+                        break  # Stop if we have enough songs overall
+                if len(total_songs) >= 15:
+                    break
+        if len(total_songs) >= 15:
+            break
+        
+    print("Collected Songs:")
+    for song in total_songs[:15]:  # Print only the first 15 songs
+        print(f"ID: {song['id']}, Name: {song['name']}, Artist: {song['artists'][0]['name']}")
     return jsonify({
         'tracks': [
             {'id': song['id'], 'name': song['name'], 'artist': song['artists'][0]['name']}
-            for song in selected_songs
+            for song in total_songs[:15]
         ]
     })
 

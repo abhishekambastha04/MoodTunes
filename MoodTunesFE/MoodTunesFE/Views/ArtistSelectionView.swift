@@ -99,7 +99,7 @@ struct ArtistSelectionView: View {
     
     // send data to backend to generate playlist
     func generatePlaylist() {
-        guard let url = URL(string: "http://192.168.0.84:5001/generate-playlist") else {
+        guard let url = URL(string: "http://192.168.0.84:5001/generate_playlist") else {
             print("Invalid URL")
             return
         }
