@@ -13,6 +13,7 @@ struct ArtistSelectionView: View {
     @State private var searchText: String = ""
     @State private var searchResults: [Artist] = []
     @State private var selectedArtists: [Artist] = []
+    @State private var isGeneratingPlaylist = false
     // playlist stuff
     @State private var playlist: [Track] = [] // Store the playlist here
     @State private var isPlaylistReady = false
@@ -72,9 +73,13 @@ struct ArtistSelectionView: View {
                             .padding(.horizontal)
                     }
                 
-                    if selectedArtists.count >= 5 {
+                    if selectedArtists.count >= 5 && isGeneratingPlaylist == false {
                         Button(action: {
+                        isGeneratingPlaylist = true
                         generatePlaylist()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                            isGeneratingPlaylist = false
+                        }
                     }) {
                         Text("Generate Playlist")
                             .padding()
@@ -84,10 +89,23 @@ struct ArtistSelectionView: View {
                             .padding(.top, 20)
                         }
                         NavigationLink(
-                            destination: ReviewPlaylistView(playlist: playlist),
+                            destination: ReviewPlaylistView(playlist: playlist, accessToken: accessToken),
                             isActive: $isPlaylistReady  // Bind the navigation to the state
                         ) {
                             EmptyView()
+                        }
+                    }
+                    else if isGeneratingPlaylist {
+                        VStack {
+                            ProgressView()  // Circular rotating animation
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .scaleEffect(1.5)  // You can adjust the size if needed
+                                .padding(.top, 20)
+
+                            Text("Generating Playlist...")
+                                .font(.headline)
+                                .foregroundColor(.gray)
+                                .padding(.top, 10)
                         }
                     }
                 }

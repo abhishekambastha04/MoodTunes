@@ -140,10 +140,11 @@ redirect_uri_1 = "http://192.168.0.84:5001/callback"
 
 @app.route('/spotify_login')
 def spotify_login():
+    scopes = "user-read-email playlist-modify-public playlist-modify-private"
     auth_url = (
         f"https://accounts.spotify.com/authorize"
         f"?client_id={spotify_client_id}&response_type=code"
-        f"&redirect_uri={redirect_uri_1}&scope=user-read-email"
+        f"&redirect_uri={redirect_uri_1}&scope={scopes}"
     )
     print(auth_url)
     return redirect(auth_url)
