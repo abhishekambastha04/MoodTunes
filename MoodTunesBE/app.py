@@ -145,6 +145,7 @@ def spotify_login():
         f"https://accounts.spotify.com/authorize"
         f"?client_id={spotify_client_id}&response_type=code"
         f"&redirect_uri={redirect_uri_1}&scope={scopes}"
+        f"&show_dialog=true"
     )
     print(auth_url)
     return redirect(auth_url)
